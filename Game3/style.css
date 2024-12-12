@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+h2 {
+    color: #333;
+    margin: 10px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 650px;
+    margin: 20px auto;
+    background-color: #e6e6fa;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.square {
+    height: 200px;
+    width: 200px;
+    border: 2px solid #333;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+.mole {
+    background-image: url('rat.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid #ff4500;
+}
+#score, #time-left {
+    font-size: 1.5em;
+    color: #ff4500;
+    font-weight: bold;
+}
+
+#time-left {
+    color: #1e90ff;
+}
