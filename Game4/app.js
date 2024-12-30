@@ -1,11 +1,14 @@
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.getElementById('score');
+const livesDisplay = document.getElementById('lives');
+
 const width = 100;
 const height = 20;
 const balldia = 20;
 const gridWidth = 560;
 const gridHeight = 300;
 let score = 0;
+let lives = 3;
 let xDirection = -2;
 let yDirection = 2;
 let timer;
@@ -15,6 +18,8 @@ let current = start;
 
 const ballStart = [270, 40];
 let ballCurr = ballStart;
+
+livesDisplay.innerHTML = `Lives: ${lives}`;
 
 class Block {
     constructor(x_axis, y_axis) {
@@ -107,7 +112,7 @@ function findDirection() {
     if (ballCurr[0] >= gridWidth - balldia || ballCurr[0] <= 0) {
         xDirection = -xDirection;
     }
-    if (ballCurr[1] >= gridHeight - balldia || ballCurr[1] <= 0) {
+    if (ballCurr[1] >= gridHeight - balldia) {
         yDirection = -yDirection;
     }
 }
@@ -123,15 +128,17 @@ function checkCollision() {
             const allBlocks = Array.from(document.querySelectorAll('.blocks'));
             allBlocks[i].classList.remove('blocks');
             totalBlocks.splice(i, 1);
-            findDirection();
+            yDirection = -yDirection;
             score++;
-            scoreDisplay.innerHTML = score;
+            scoreDisplay.innerHTML = `Score: ${score}`;
 
+           
             if (totalBlocks.length === 0) {
-                scoreDisplay.innerHTML = 'YOU WIN';
+                scoreDisplay.innerHTML = 'YOU WIN!';
                 clearInterval(timer);
                 document.removeEventListener('keydown', moveUser);
             }
+            return;
         }
     }
 
@@ -145,8 +152,21 @@ function checkCollision() {
     }
 
     if (ballCurr[1] <= 0) {
+        loseLife();
+    }
+}
+
+function loseLife() {
+    lives--;
+    livesDisplay.innerHTML = `Lives: ${lives}`;
+    if (lives > 0) {
+        ballCurr = ballStart.slice();
+        xDirection = -2;
+        yDirection = 2;
+        showBall();
+    } else {
         clearInterval(timer);
-        scoreDisplay.innerHTML = 'YOU LOSE';
+        scoreDisplay.innerHTML = 'GAME OVER!';
         document.removeEventListener('keydown', moveUser);
     }
 }

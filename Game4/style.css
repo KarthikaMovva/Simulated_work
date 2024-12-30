@@ -1,55 +1,36 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-#score {
-    font-size: 24px;
-    color: #333;
-    position: absolute;
-    top: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .grid {
     position: relative;
     width: 560px;
     height: 300px;
-    border: 2px solid #333;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.blocks {
-    position: absolute;
-    width: 100px;
-    height: 20px;
-    background-color: #3498db;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    background-color: #f3f3f3;
+    border: 2px solid black;
+    overflow: hidden;
 }
 
 .user {
     position: absolute;
     width: 100px;
     height: 20px;
-    background-color: #2ecc71;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: blue;
+    bottom: 10px;
 }
 
 .userBall {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: #f39c12;
+    background-color: red;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blocks {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: green;
 }
