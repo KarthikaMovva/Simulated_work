@@ -55,3 +55,12 @@ body {
     visibility: hidden;
     pointer-events: none;
   }
+  #restart{
+    margin-top: 20px;
+    width: 90px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(254, 204, 6);
+  }

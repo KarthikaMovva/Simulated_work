@@ -53,12 +53,32 @@ document.addEventListener('DOMContentLoaded', () => {
   
     setofCards.sort(() => 0.5 - Math.random())
   
-    const gridofCards = document.querySelector('.grid')
-    const result = document.querySelector('#result')
+    const gridofCards = document.querySelector('.grid');
+    const result = document.querySelector('#result');
+    const timerElement = document.querySelector('#timer');
+    const restartButton = document.querySelector('#restart');
     let cardsPicked = []
     let cardsPickedId = []
     let cardsCompleted = []
+    let timer = 0;
+    let timerInterval;
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timer++;
+        timerElement.textContent = timer;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+    }
   
+    function resetTimer() {
+      timer = 0;
+      timerElement.textContent = 0;
+    }
+
     function createBoard() {
       for (let i = 0; i < setofCards.length; i++) {
         const card = document.createElement('img')
@@ -95,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cardsPickedId = []
       result.textContent = cardsCompleted.length
       if  (cardsCompleted.length === setofCards.length/2) {
+        stopTimer()
         result.textContent = 'Congratulations! You found them all!'
       }
     }
@@ -108,6 +129,20 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(FindMatch, 500)
       }
     }
-  
+
+    restartButton.addEventListener('click', () => {
+      cardsCompleted = [];
+      cardsPicked = [];
+      cardsPickedId = [];
+      result.textContent = 0;
+      resetTimer();
+      stopTimer();
+      startTimer();
+      setofCards.sort(() => 0.5 - Math.random());
+      gridofCards.innerHTML = ''; 
+      createBoard();
+    });
+
+    startTimer()
     createBoard()
   })

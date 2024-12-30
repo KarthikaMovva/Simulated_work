@@ -6,12 +6,27 @@ const logsLeft = document.querySelectorAll('.log-left')
 const logsRight = document.querySelectorAll('.log-right')
 const carsLeft = document.querySelectorAll('.car-left')
 const carsRight = document.querySelectorAll('.car-right')
+const scoreDisplay = document.getElementById('score')
 
 let currentIndex = 76
 const width = 9
 let timerId
 let outcomeTimerId
 let currentTime = 20
+let score = 0;
+
+function updateScore(points) {
+    score += points; 
+    scoreDisplay.textContent = score; 
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+        updateScore(10);
+    } else if (event.key === 'ArrowDown') {
+        updateScore(-5);
+    }
+});
 
 function moveFrog(e) {
     squares[currentIndex].classList.remove('frog')

@@ -1,5 +1,12 @@
 body {
-    margin: 0; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
   }
   
   .game-container {
@@ -42,4 +49,9 @@ body {
   .results{
     text-align: center;
   }
+  .lives-container{
+    text-align: center;
+  }
   
+
+ 

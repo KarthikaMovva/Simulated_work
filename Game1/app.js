@@ -3,6 +3,7 @@ const user = document.getElementById('user');
 const result = document.getElementById('result');
 const score = document.getElementById('score');
 const reset = document.getElementById('reset');
+const history = document.getElementById('history');
 const possibleChoices = document.querySelectorAll('button');
 
 let userPreference;
@@ -10,7 +11,7 @@ let computerPreference;
 let YourScore = 0;
 let computerScore = 0;
 
-const choices = ['rock','paper','scissor'];
+const choices = ['rock', 'paper', 'scissor'];
 
 possibleChoices.forEach((choice) =>
   choice.addEventListener('click', (e) => {
@@ -18,8 +19,9 @@ possibleChoices.forEach((choice) =>
       userPreference = e.target.id;
       user.innerText = userPreference;
       generateRandomChoice();
-      Result();
+      const roundResult = Result();
       updateScore();
+      addToHistory(userPreference, computerPreference, roundResult);
     }
   })
 );
@@ -33,6 +35,7 @@ function generateRandomChoice() {
 function Result() {
   if (computerPreference === userPreference) {
     result.innerText = "It's a Draw!";
+    return "Draw";
   } else if (
     (computerPreference === 'rock' && userPreference === 'paper') ||
     (computerPreference === 'paper' && userPreference === 'scissor') ||
@@ -40,14 +43,22 @@ function Result() {
   ) {
     result.innerText = 'You Win!';
     YourScore++;
+    return "Win";
   } else {
     result.innerText = 'You Lose!';
     computerScore++;
+    return "Lose";
   }
 }
 
 function updateScore() {
   score.innerText = `Player: ${YourScore} | Computer: ${computerScore}`;
+}
+
+function addToHistory(userChoice, computerChoice, roundResult) {
+  const historyItem = document.createElement('li');
+  historyItem.textContent = `You chose ${userChoice}, Computer chose ${computerChoice}. Result: ${roundResult}`;
+  history.appendChild(historyItem);
 }
 
 reset.addEventListener('click', () => {
@@ -57,7 +68,7 @@ reset.addEventListener('click', () => {
   computer.innerText = '';
   result.innerText = '';
   updateScore();
+  history.innerHTML = ''; 
 });
-
 
 updateScore();
